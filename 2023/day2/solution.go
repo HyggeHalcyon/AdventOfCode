@@ -1,4 +1,3 @@
-// --- Day 2: Cube Conundrum ---
 package main
 
 import (
@@ -11,7 +10,7 @@ import (
 
 /*
  * =========================================================
- *                       	CONSTANTS
+ *                        CONSTANTS
  * =========================================================
  */
 const MAXRED = 12
@@ -20,7 +19,7 @@ const MAXBLUE = 14
 
 /*
  * =========================================================
- *                       	UTILITY
+ *                         UTILITY
  * =========================================================
  */
 func readFile(filename string) []string {
@@ -41,20 +40,12 @@ func readFile(filename string) []string {
 	return lines
 }
 
-// swap pass by reference
-func swap(a *int, b *int) {
-	temp := *a
-	*a = *b
-	*b = temp
-}
-
 /*
  * =========================================================
  *                       SOLUTIONS
  * =========================================================
  */
-func part_one_sln() int {
-	// --- PART ONE ---
+func sln_one() int {
 	lines := readFile("problem.txt")
 	var sum int
 
@@ -76,15 +67,15 @@ func part_one_sln() int {
 			switch color {
 			case "red":
 				if num > red {
-					swap(&num, &red)
+					red = num
 				}
 			case "green":
 				if num > green {
-					swap(&num, &green)
+					green = num
 				}
 			case "blue":
 				if num > blue {
-					swap(&num, &blue)
+					blue = num
 				}
 			default:
 				fmt.Println("[X] Error: unknown color")
@@ -102,8 +93,7 @@ func part_one_sln() int {
 	return sum
 }
 
-func part_two_sln() int {
-	// --- PART TWO ---
+func sln_two() int {
 	lines := readFile("problem.txt")
 	var sum int
 
@@ -123,15 +113,15 @@ func part_two_sln() int {
 			switch color {
 			case "red":
 				if num > red {
-					swap(&num, &red)
+					red = num
 				}
 			case "green":
 				if num > green {
-					swap(&num, &green)
+					green = num
 				}
 			case "blue":
 				if num > blue {
-					swap(&num, &blue)
+					blue = num
 				}
 			default:
 				fmt.Println("[X] Error: unknown color")
@@ -147,9 +137,9 @@ func part_two_sln() int {
 func main() {
 	var sln int
 
-	sln = part_one_sln()
+	sln = sln_one()
 	fmt.Printf("[+] part-1 solution: %v\n", sln) // 2727
 
-	sln = part_two_sln()
+	sln = sln_two()
 	fmt.Printf("[+] part-2 solution: %v\n", sln) // 56580
 }

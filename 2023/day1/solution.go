@@ -1,4 +1,3 @@
-// --- Day 1: Trebuchet?! ---
 package main
 
 import (
@@ -10,7 +9,7 @@ import (
 
 /*
  * =========================================================
- *                       	CONSTANTS
+ *                        CONSTANTS
  * =========================================================
  */
 var WORD_TO_STRING = map[string]int{
@@ -27,7 +26,7 @@ var WORD_TO_STRING = map[string]int{
 
 /*
  * =========================================================
- *                       	UTILITY
+ *                         UTILITY
  * =========================================================
  */
 func isdigit(c rune) bool {
@@ -71,8 +70,7 @@ func startsWith(s string, key string) bool {
  *                       SOLUTIONS
  * =========================================================
  */
-func part_one_sln() int {
-	// --- PART ONE ---
+func sln_one() int {
 	lines := readFile("problem.txt")
 	var sum int
 
@@ -96,8 +94,7 @@ func part_one_sln() int {
 	return sum
 }
 
-func part_two_sln() int {
-	// --- PART TWO ---
+func sln_two() int {
 	lines := readFile("problem.txt")
 	var sum int
 
@@ -139,9 +136,9 @@ func part_two_sln() int {
 func main() {
 	var sln int
 
-	sln = part_one_sln()
+	sln = sln_one()
 	fmt.Printf("[+] part-1 solution: %v\n", sln) // 55816
 
-	sln = part_two_sln()
+	sln = sln_two()
 	fmt.Printf("[+] part-2 solution: %v\n", sln) // 54980
 }

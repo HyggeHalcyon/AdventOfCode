@@ -1,4 +1,3 @@
-// --- Day 4: Scratchcards ---
 package main
 
 import (
@@ -12,13 +11,7 @@ import (
 
 /*
  * =========================================================
- *                       	CONSTANTS
- * =========================================================
- */
-
-/*
- * =========================================================
- *                       	UTILITY
+ *                         UTILITY
  * =========================================================
  */
 func readFile(filename string) []string {
@@ -44,8 +37,7 @@ func readFile(filename string) []string {
  *                       SOLUTIONS
  * =========================================================
  */
-func part_one_sln() int {
-	// --- PART ONE ---
+func sln_one() int {
 	lines := readFile("problem.txt")
 	var sum int
 
@@ -84,14 +76,13 @@ func part_one_sln() int {
 	return sum
 }
 
-func part_two_sln() int {
-	// --- PART TWO ---
+func sln_two() int {
 	lines := readFile("problem.txt")
 	scratchcards := make([]int, len(lines))
 	var sum int
 
-	for id, line := range lines {
-		scratchcards[id] += 1
+	for i, line := range lines {
+		scratchcards[i] += 1
 		scratchcard := strings.Split(line, ": ")[1]
 
 		left := strings.Split(scratchcard, " |")[0]
@@ -122,13 +113,13 @@ func part_two_sln() int {
 			}
 		}
 
-		for i := 0; i < wins; i++ {
-			scratchcards[i+id+1] += scratchcards[id]
+		for w := 0; w < wins; w++ {
+			scratchcards[w+i+1] += scratchcards[i]
 		}
 	}
 
-	for i := 0; i < len(scratchcards); i++ {
-		sum += scratchcards[i]
+	for s := 0; s < len(scratchcards); s++ {
+		sum += scratchcards[s]
 	}
 
 	return sum
@@ -137,9 +128,9 @@ func part_two_sln() int {
 func main() {
 	var sln int
 
-	sln = part_one_sln()
+	sln = sln_one()
 	fmt.Printf("[+] part-1 solution: %v\n", sln) // 19855
 
-	sln = part_two_sln()
+	sln = sln_two()
 	fmt.Printf("[+] part-2 solution: %v\n", sln) // 10378710
 }

@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
-# --- Day 1: Trebuchet?! ---
-import sys
 
+FILE = open('problem.txt', 'r').read()
 WORD_TO_DIGITS = {
     "one": 1,
     "two": 2,
@@ -20,68 +19,58 @@ def isdigit(char: str) -> bool:
         return True
     return False
 
-def part_one_sln(filename: str) -> int:
-    # --- Part One ---
-    sln = 0
+# def startsWith(s: str, key: str) -> bool:
+#     if 
 
-    with open(filename) as file:
-        for line in file:
-            firstDigit = -1
-            lastDigit = -1
+def sln_one():
+    lines = FILE.split('\n')
+    sum = 0
 
-            for char in line:
-                if(isdigit(char)):
-                    if(firstDigit == -1):
-                        firstDigit = int(char)
-                    lastDigit = int(char)
+    # enumerate each line
+    for line in lines:
+        firstDigit, lastDigit = '', ''
 
-            # print(f'[!] {line.strip()} -> {firstDigit}:{lastDigit}')
-            sln += int(str(firstDigit) + str(lastDigit))
-    
-    return sln
+        # enumerate each character
+        for char in line:
+           if isdigit(char):
+                if(firstDigit == ''):
+                    firstDigit = char
+                lastDigit = char
+        
+        sum += int(firstDigit + lastDigit)
 
-def part_two_sln(filename: str) -> int:
-    # --- Part Two ---
-    sln = 0
+    print(f'[+] part-1 solution: {sum}')
 
-    with open(filename) as file:
-        for line in file:
-            firstDigit = -1
-            lastDigit = -1
-            buff = ''
+def sln_two():
+    lines = FILE.split('\n')
+    sum = 0
 
-            for char in line:
-                num = 0
+    # enumerate each line
+    for line in lines:
+        firstDigit, lastDigit = '', ''
 
-                if(isdigit(char)):
-                    num = int(char)
-                    buff = ''
+        # enumerate each character
+        for idx, char in enumerate(line):
+            num = 0
+
+            if isdigit(char):
+                num = char
+            else:
+                for key in WORD_TO_DIGITS.keys():
+                    if(line[idx:].startswith(key)):
+                        num = str(WORD_TO_DIGITS[key])
+                        break
                 else:
-                    buff += char
-                    for key in WORD_TO_DIGITS:
-                        if key in buff:
-                            num = WORD_TO_DIGITS[key]
-                            buff = ''
-                            break
-                    else:
-                        continue
+                    continue
 
-                if(firstDigit == -1):
-                    firstDigit = num
-                lastDigit = num
+            if(firstDigit == ''):
+                firstDigit = num
+            lastDigit = num
+        
+        sum += int(firstDigit + lastDigit)
 
-            # print(f'[!] {line.strip()} -> {firstDigit}:{lastDigit} || {buff.strip()}')
-            sln += int(str(firstDigit) + str(lastDigit))
-    
-    return sln
+    print(f'[+] part-2 solution: {sum}')
 
 if __name__ == '__main__':
-    if(len(sys.argv) < 2):
-        print(f"[*] Usage: {sys.argv[0]} <file>")
-        sys.exit(1)
-
-    sln = part_one_sln(sys.argv[1]) # 55816
-    print(f'[+] Solution Part One: {sln}')
-
-    sln = part_two_sln(sys.argv[1]) # 54970 ?? why am i missing a 10?
-    print(f'[+] Solution Part Two: {sln}')
+    sln_one()
+    sln_two()
