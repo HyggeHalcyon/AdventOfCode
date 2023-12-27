@@ -19,9 +19,6 @@ def isdigit(char: str) -> bool:
         return True
     return False
 
-# def startsWith(s: str, key: str) -> bool:
-#     if 
-
 def sln_one():
     lines = FILE.split('\n')
     sum = 0
